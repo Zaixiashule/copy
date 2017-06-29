@@ -88,6 +88,7 @@ export default {
 #reply {
   display: flex;
   flex-direction: column;
+  background: blue;
 }
 
 #reply img {
@@ -96,6 +97,7 @@ export default {
 }
 
 .replySec {
+  box-sizing: border-box;
   display: flex;
   background: grey;
   width: 100%;
