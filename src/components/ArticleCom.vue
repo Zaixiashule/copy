@@ -17,8 +17,8 @@
             <span>{{dealCommentTime(reply.create_at)}}</span>
             <span v-if='reply.ups.length > 0'
                   class='thumbsClass'>
-                                                  <icon name='thumbs-up' scale='2'></icon>
-                                                  <span>{{reply.ups.length}}</span>
+                                                    <icon name='thumbs-up' scale='2'></icon>
+                                                    <span>{{reply.ups.length}}</span>
             </span>
           </div>
           <p v-html='reply.content'></p>
@@ -104,6 +104,7 @@ export default {
   border: 1px solid #ddd;
   font-size: 20px;
   padding: 2rem;
+  background: #F9FAFC;
 }
 
 .secDiv span,
@@ -123,6 +124,7 @@ export default {
   border: 1px solid #ddd;
   line-height: 1.6;
   padding-bottom: 1rem;
+  background: #EFF2F7;
 }
 
 #reply {
