@@ -3,7 +3,7 @@
     <div v-for='item of content'>
       <router-link :to='{name: "UserRoute",params:{name: item.author.loginname}}'><img :src='item.author.avatar_url'
              :title='item.author.loginname'></router-link>
-      <div>
+      <div class='textDiv'>
         <router-link :to='{name:"ArticleRoute",params:{id:item.id}}'>{{item.title}}</router-link>
         <div class='stuff'>
           <span>回复：{{item.reply_count}}</span>
@@ -70,12 +70,25 @@ export default {
 <style scoped>
 .secDiv {
   width: 60%;
-  background: #fff;
+  background: #FFFFFF;
   border: 1px solid #ddd;
   display: flex;
   flex-direction: column;
   font-size: 22px;
   padding: 2rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+.secDiv>div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0.5rem 0;
+  border-bottom: 2px solid #C0CCDA;
+  padding-bottom: 1rem;
 }
 
 .secDiv>div img {
@@ -84,21 +97,27 @@ export default {
   margin-right: 2rem;
 }
 
-.secDiv>div {
-  display: flex;
-  justify-content: space-start;
-  margin: 0.5rem 0;
-}
-
-.secDiv>div>div {
+.textDiv {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  width: 100%;
+}
+
+.textDiv a {
+  color: black;
+  font-size: 25px;
+}
+
+.textDiv a:visited {
+  color: grey;
 }
 
 .stuff {
+  font-size: 17px;
   margin-top: 1rem;
+  color: #8492A6;
 }
 
 .stuff span:first-child {
