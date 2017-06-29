@@ -2,7 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import ArticleCom from '@/components/ArticleCom'
+import UserCom from '@/components/UserCom'
 import MainSec from '@/components/MainSec'
+import SideSec from '@/components/SideSec'
 
 Vue.use(Router)
 
@@ -11,11 +13,20 @@ export default new Router({
     {
       path: '/',
       name: 'RootPath',
-      component: MainSec
+      components: {
+        main: MainSec
+      }
     }, {
       path: '/topic/:id',
       name: 'ArticleRoute',
-      component: ArticleCom
+      components: {
+        main: ArticleCom,
+        side: SideSec
+      }
+    }, {
+      path: '/user/:name',
+      name: 'UserRoute',
+      component: UserCom
     }
   ]
 })
