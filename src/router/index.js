@@ -26,7 +26,12 @@ export default new Router({
     }, {
       path: '/user/:name',
       name: 'UserRoute',
-      component: UserCom
+      components: {
+        main: UserCom
+      }
+    }, {
+      path: '/user/:name',
+      redirect: '/user:name'
     }
   ]
 })

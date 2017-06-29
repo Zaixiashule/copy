@@ -22,6 +22,7 @@ export default {
   display: flex;
   justify-content: space-around;
   font-size: 23px;
+  word-break: break-all;
 }
 
 * {
