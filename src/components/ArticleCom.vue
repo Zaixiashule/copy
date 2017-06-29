@@ -1,5 +1,6 @@
 <template>
-  <div class='secDiv'>
+  <div class='secDiv'
+       v-loading.lock='loading'>
     <span class='marginSpan'>发布于：{{createdTime}}</span>
     <router-link :to='{name:"UserRoute",params:{name: article.author.loginname}}'>作者：{{article.author.loginname}}</router-link>
     <span class='marginSpan'>浏览量：{{article.visit_count}}</span>
@@ -17,8 +18,8 @@
             <span>{{dealCommentTime(reply.create_at)}}</span>
             <span v-if='reply.ups.length > 0'
                   class='thumbsClass'>
-                                                    <icon name='thumbs-up' scale='2'></icon>
-                                                    <span>{{reply.ups.length}}</span>
+                                                        <icon name='thumbs-up' scale='2'></icon>
+                                                        <span>{{reply.ups.length}}</span>
             </span>
           </div>
           <p v-html='reply.content'></p>
@@ -42,7 +43,8 @@ export default {
         content: '',
         create_at: '2017-04-130000',
         replies: ''
-      }
+      },
+      loading: true
     }
   },
   computed: {
@@ -53,6 +55,13 @@ export default {
   methods: {
     dealCommentTime(time) {
       return String(time).match(/.{16}/)[0].replace(/.{2}/, '').replace(/[T]/, ' ')
+    }
+  },
+  watch: {
+    article(val) {
+      if (val) {
+        this.loading = false
+      }
     }
   },
   beforeCreate() {

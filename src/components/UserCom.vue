@@ -1,6 +1,7 @@
 <template>
   <div class='secDiv'>
-    <div class='profile'>
+    <div class='profile'
+         v-loading.lock='loading'>
       <div>
         <img :src='userInfo.avatar_url'
              :title='userInfo.loginname'>
@@ -17,7 +18,8 @@
               scale='4'></icon><span>注册时间：</span>{{dealCommentTime(userInfo.create_at)}}</p>
     </div>
   
-    <div class='recentReplies'>
+    <div class='recentReplies'
+         v-loading.lock='loading'>
       <p>最近参与的话题</p>
       <template v-for='(item,index) of userInfo.recent_replies'>
         <div v-if='index < 4'>
@@ -32,7 +34,8 @@
       </template>
     </div>
   
-    <div class='recentTopics'>
+    <div class='recentTopics'
+         v-loading.lock='loading'>
       <p>最近创建的话题</p>
       <template v-for='(item,index) of userInfo.recent_topics'>
         <div v-if='index < 5 && item'>
@@ -51,7 +54,8 @@
 export default {
   data() {
     return {
-      userInfo: {}
+      userInfo: {},
+      loading: true
     }
   },
   created() {
@@ -66,12 +70,10 @@ export default {
   },
   methods: {
     dealCommentTime(time) {
-      console.log(time, 909909)
       return String(time).match(/.{10}/)[0].replace(/.{2}/, '').replace(/[T]/, ' ')
     }
   },
   beforeRouteUpdate(to, from, next) {
-    console.log(to)
     this.$http({
       url: `https://cnodejs.org/api/v1${to.path}`,
       method: 'get'
@@ -81,6 +83,13 @@ export default {
       console.log('UserCom.vue: ', res)
     })
     next()
+  },
+  watch: {
+    userInfo(val) {
+      if (val) {
+        this.loading = false
+      }
+    }
   }
 }
 </script>

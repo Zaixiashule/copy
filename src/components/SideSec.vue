@@ -1,5 +1,6 @@
 <template>
-  <div class='secDiv'>
+  <div class='secDiv'
+       v-loading.lock='loading'>
     <div>
       <router-link :to='{name: "UserRoute",params:{name: userInfo.loginname}}'><img :src='userInfo.avatar_url'></router-link>
       <span>{{userInfo.loginname}}</span>
@@ -21,7 +22,8 @@ export default {
       userInfo: {
         avatar_url: ''
 
-      }
+      },
+      loading: true
     }
   },
   created() {
@@ -39,6 +41,13 @@ export default {
     }).catch((res) => {
       console.log('SideSec.vue :', res)
     })
+  },
+  watch: {
+    userInfo(val) {
+      if (val) {
+        this.loading = false
+      }
+    }
   }
 }
 </script>
